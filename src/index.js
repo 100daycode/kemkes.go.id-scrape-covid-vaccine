@@ -4,6 +4,11 @@ const cheerio = require("cheerio");
 // Express init
 const express = require("express");
 const app = express();
+const router = express.Router();
+
+// serverless http
+const serverless = require("serverless-http");
+
 // port local
 const port = 5000;
 
@@ -35,10 +40,14 @@ async function getData() {
   }
 }
 
-app.get("/", async (req, res) => {
+router.get("/", async (req, res) => {
   res.send(await getData());
 });
+
+app.use("/.netlify/functions/index", router);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
 });
+
+module.exports.handler = serverless(app);
