@@ -1,19 +1,44 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
+// Express init
+const express = require("express");
+const app = express();
+// port local
+const port = 5000;
+
+// base url
 const url = "https://www.kemkes.go.id/";
 
-axios.get(url).then((response) => {
-  const vaccine = [];
+async function getData() {
+  try {
+    const vaccine = [];
 
-  const $ = cheerio.load(response.data);
+    const response = await axios.get(url);
 
-  const trs = $(".info-case").children().eq(1).find("table>tbody").children();
-  $(trs).each((i, e) => {
-    const tds = $(e).find("td");
+    const $ = cheerio.load(response.data);
 
-    vaccine.push(`${$(tds[0]).text()} : ${$(tds[2]).text()}`);
-  });
+    const trs = $(".info-case").children().eq(1).find("table>tbody").children();
 
-  console.log(vaccine);
+    // i for : index
+    // e for : element
+    $(trs).each((i, e) => {
+      const tds = $(e).find("td");
+      const title = `${$(tds[0]).text()}`;
+      const value = `${$(tds[2]).text()}`;
+      vaccine[i] = { title, value };
+    });
+
+    return vaccine;
+  } catch (error) {
+    console.error(error);
+  }
+}
+
+app.get("/", async (req, res) => {
+  res.send(await getData());
+});
+
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`);
 });
