@@ -8,13 +8,14 @@ const app = express();
 const port = 5000;
 
 // base url
-const url = "https://www.kemkes.go.id/";
+const url_kemkes = "https://www.kemkes.go.id/";
+const url_bing = "https://bing.com/covid/local/indonesia?vert=vaccineTracker";
 
-async function getData() {
+async function getDataKemkes() {
   try {
-    const vaccine = [];
+    const vaccine = {};
 
-    const response = await axios.get(url);
+    const response = await axios.get(url_kemkes);
 
     const $ = cheerio.load(response.data);
 
@@ -31,12 +32,16 @@ async function getData() {
 
     return vaccine;
   } catch (error) {
-    console.error(error);
+    // If the assertion fails, it will throw an error.
+    // This error will cause done() never to get called,
+    // because the code errored out before it. That's what causes the timeout.
+    assert.isNotOk(error, "Promise error");
+    done();
   }
 }
 
 app.get("/", async (req, res) => {
-  res.send(await getData());
+  res.send(await getDataKemkes());
 });
 
 app.listen(port, () => {
