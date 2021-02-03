@@ -12,28 +12,28 @@ npm run start
 ```
 ##  Response Data
 ```
-[
-    {
+{
+    "0": {
         "title": "Total Sasaran Vaksinasi",
         "value": "181.554.465"
     },
-    {
+    "1": {
         "title": "Sasaran Vaksinasi SDMK*",
-        "value": "1.531.907"
+        "value": "1.534.937"
     },
-    {
+    "2": {
         "title": "Registrasi Ulang",
-        "value": "1.502.326"
+        "value": "1.503.941"
     },
-    {
+    "3": {
         "title": "Vaksinasi-1",
-        "value": "596.260"
+        "value": "646.026"
     },
-    {
+    "4": {
         "title": "Vaksinasi-2",
-        "value": "51.999"
+        "value": "71.621"
     }
-]
+}
 ```
 ## Colaborator
 Very open to anyone, I'll write your name under this, please contribute by pull request.
