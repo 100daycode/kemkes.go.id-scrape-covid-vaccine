@@ -5,8 +5,10 @@ const cors = require("cors");
 // Express init
 const express = require("express");
 const app = express();
+
 // port local
-const port = 5000;
+const PORT = process.env.PORT || 4000;
+
 app.use(cors());
 
 // base url
@@ -45,6 +47,6 @@ app.get("/", async (req, res) => {
   res.send(await getDataKemkes());
 });
 
-app.listen(port, () => {
-  console.log(`Example app listening at http://localhost:${port}`);
+app.listen(PORT, () => {
+  console.log(`Example app listening at http://localhost:${PORT}`);
 });
