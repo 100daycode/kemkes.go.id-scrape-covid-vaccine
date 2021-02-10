@@ -1,15 +1,16 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
+const cors = require("cors");
 
 // Express init
 const express = require("express");
 const app = express();
 // port local
 const port = 5000;
+app.use(cors());
 
 // base url
 const url_kemkes = "https://www.kemkes.go.id/";
-const url_bing = "https://bing.com/covid/local/indonesia?vert=vaccineTracker";
 
 async function getDataKemkes() {
   try {
