@@ -13,18 +13,13 @@ const router = express.Router();
 const serverless = require("serverless-http");
 
 // port local
+app.use(cors());
 const port = 5000;
 
 // base url
 const url = "https://www.kemkes.go.id/";
 
 // Configuring CORS
-
-var corsOptions = {
-  origin: true,
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  optionsSuccessStatus: 200, //
-};
 
 async function getData() {
   try {
@@ -51,7 +46,7 @@ async function getData() {
   }
 }
 
-router.get("/", cors(corsOptions), async (req, res) => {
+router.get("/", async (req, res) => {
   res.send(await getData());
 });
 
