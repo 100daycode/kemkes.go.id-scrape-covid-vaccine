@@ -13,7 +13,6 @@ const router = express.Router();
 const serverless = require("serverless-http");
 
 // port local
-app.use(cors());
 const port = 5000;
 
 // base url
@@ -50,7 +49,7 @@ router.get("/", async (req, res) => {
   res.send(await getData());
 });
 
-app.use("/.netlify/functions/index", router);
+app.use("/.netlify/functions/index", router, cors());
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
