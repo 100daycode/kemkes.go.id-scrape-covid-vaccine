@@ -22,6 +22,7 @@ const url = "https://www.kemkes.go.id/";
 
 var corsOptions = {
   origin: url,
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   optionsSuccessStatus: 200, //
 };
 
