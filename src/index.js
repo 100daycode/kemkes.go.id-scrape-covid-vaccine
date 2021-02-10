@@ -16,7 +16,7 @@ const url_kemkes = "https://www.kemkes.go.id/";
 
 async function getDataKemkes() {
   try {
-    const vaccine = {};
+    const vaccine = [];
 
     const response = await axios.get(url_kemkes);
 
