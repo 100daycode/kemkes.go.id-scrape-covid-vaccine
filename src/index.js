@@ -45,11 +45,11 @@ async function getData() {
   }
 }
 
-router.get("/", async (req, res) => {
+router.get("/", cors(), async (req, res) => {
   res.send(await getData());
 });
 
-app.use("/.netlify/functions/index", router, cors());
+app.use("/.netlify/functions/index", router);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
