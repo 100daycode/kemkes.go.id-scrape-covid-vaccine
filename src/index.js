@@ -45,7 +45,9 @@ async function getData() {
   }
 }
 
-router.get("/", cors(), async (req, res) => {
+app.use(cors());
+
+router.get("/", async (req, res) => {
   res.send(await getData());
 });
 
