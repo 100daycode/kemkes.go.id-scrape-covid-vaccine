@@ -1,6 +1,9 @@
 const axios = require("axios");
 const cheerio = require("cheerio");
 
+// Allow Cors
+const cors = require("cors");
+
 // Express init
 const express = require("express");
 const app = express();
@@ -14,6 +17,13 @@ const port = 5000;
 
 // base url
 const url = "https://www.kemkes.go.id/";
+
+// Configuring CORS
+
+var corsOptions = {
+  origin: "http://example.com",
+  optionsSuccessStatus: 200, //
+};
 
 async function getData() {
   try {
@@ -40,7 +50,7 @@ async function getData() {
   }
 }
 
-router.get("/", async (req, res) => {
+router.get("/", cors(corsOptions), async (req, res) => {
   res.send(await getData());
 });
 
