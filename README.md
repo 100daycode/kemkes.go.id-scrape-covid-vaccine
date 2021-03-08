@@ -1,3 +1,4 @@
+## DEPRECATED
 ## kemkes.go.id scrape covid vaccine
 Scrape data from kemenkes site using cheerio and expressjs.
 
